@@ -1,5 +1,14 @@
 
-
+.final-score{
+  margin-top: 25px;
+  position: absolute;
+  left:50%;
+  transform:translateX(-50%);
+  top:520px;
+  color:rgb(97, 11, 100);
+  font-size:18px;
+  text-transform: uppercase;
+}
 * {
   margin: 0;
   padding: 0;

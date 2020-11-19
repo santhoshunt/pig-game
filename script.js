@@ -1,7 +1,8 @@
-var score = [0, 0], roundScore = 0, curPlayer;
+var score = [0, 0], roundScore = 0, curPlayer, prevScore = 0, winningScore;
 curPlayer = 0;
 
-
+winningScore = prompt("please Enter the winning score", '100');
+document.querySelector('.final-score').textContent = "Score to win : "+winningScore;
 //document.querySelector('#current--' + curPlayer).textContent = dice;
 //document.querySelector('#current--'+curPlayer).innerHTML = '<em>'+dice+'<\em>';
 
@@ -16,6 +17,7 @@ document.getElementById('current--0').textContent = '0';
 document.getElementById('current--1').textContent = '0';
 
 function changePlayer() {
+    prevScore = 0;
     //next player
     document.getElementById('current--' + curPlayer).textContent = '0';
     document.querySelector('.player--' + curPlayer).classList.remove('player--active');
@@ -31,35 +33,36 @@ document.querySelector('.btn--roll').addEventListener('click', function () {
     //anonomous function
     //generate random number
     var dice = Math.floor(Math.random() * 6) + 1;
-
     //display
     var diceDom = document.querySelector('.dice');
     diceDom.style.display = 'block';
     diceDom.src = 'dice-' + dice + '.png';
-    //update round score if rolled number ! = 1 
-    if (dice > 1) {
+    //update round score if rolled number ! = 1
+    if (dice === 6 && prevScore === 6) {
+        score[curPlayer] = 0;
+        document.getElementById('score--' + curPlayer).textContent = '0';
+        changePlayer();
+    }
+    else if (dice > 1) {
         //add score
         roundScore += dice;
         document.querySelector('#current--' + curPlayer).textContent = roundScore;
+        prevScore = dice;
     } else {
         changePlayer();
     }
 
 });
-document.querySelector('.btn--new').addEventListener('click',function(){
+document.querySelector('.btn--new').addEventListener('click', function () {
     location.reload();
 });
 document.querySelector('.btn--hold').addEventListener('click', function () {
     //adding cur score to global score
     score[curPlayer] += roundScore;
-
-
     //update UI
-    console.log(curPlayer);
     document.getElementById('score--' + curPlayer).textContent = score[curPlayer];
-
     //check if the player won the game
-    if (score[curPlayer] >= 10) {
+    if (score[curPlayer] >= winningScore) {
         document.querySelector('.dice').style.display = 'none';
         document.querySelector('.player--' + curPlayer).classList.add("winner");
         document.querySelector('.player--' + curPlayer).classList.remove('player--active');
