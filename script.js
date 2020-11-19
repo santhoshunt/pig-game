@@ -59,7 +59,7 @@ document.querySelector('.btn--hold').addEventListener('click', function () {
     document.getElementById('score--' + curPlayer).textContent = score[curPlayer];
 
     //check if the player won the game
-    if (score[curPlayer] >= 10) {
+    if (score[curPlayer] >= 100) {
         document.querySelector('.dice').style.display = 'none';
         document.querySelector('.player--' + curPlayer).classList.add("winner");
         document.querySelector('.player--' + curPlayer).classList.remove('player--active');
