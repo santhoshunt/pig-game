@@ -62,7 +62,11 @@ document.querySelector('.btn--hold').addEventListener('click', function () {
     //update UI
     document.getElementById('score--' + curPlayer).textContent = score[curPlayer];
     //check if the player won the game
+<<<<<<< HEAD
     if (score[curPlayer] >= winningScore) {
+=======
+    if (score[curPlayer] >= 100) {
+>>>>>>> e94c602e2aab6b2cd11d07206a28dd932bbc0e53
         document.querySelector('.dice').style.display = 'none';
         document.querySelector('.player--' + curPlayer).classList.add("winner");
         document.querySelector('.player--' + curPlayer).classList.remove('player--active');
